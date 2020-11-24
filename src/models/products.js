@@ -31,10 +31,17 @@ module.exports = {
 
     postProduct: (req) => {
         return new Promise((resolve, reject) => {
+
             const queryString = "INSERT INTO products SET ?";
             db.query(queryString, req, (err, data) => {
                 if (!err) {
                     resolve(data);
+                    const newRating = {
+                        product_id : data.insertId,
+                        rating: 1
+                    }
+                    const queryString1 = "INSERT INTO ratings SET ?";
+                    db.query(queryString1, newRating);
                 } else {
                     reject(err);
                 }

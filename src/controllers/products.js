@@ -37,6 +37,8 @@ module.exports = {
     const insertBody = {
       ...body
     }
+
+    console.log(res);
     productsModel
       .postProduct(insertBody, res)
       .then((data) => {
@@ -44,6 +46,7 @@ module.exports = {
           id: data.insertId,
           ...insertBody,
         };
+
         form.success(res, newResObj);
       })
       .catch((err) => {
