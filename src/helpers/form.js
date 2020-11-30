@@ -30,7 +30,7 @@ module.exports = {
         })
 
         let categories = categoryArray.reduce((map, row) => {
-            key = row['category_name'];
+            let key = row['category_name'];
             map[key] = row;
             return map;
         }, {})
