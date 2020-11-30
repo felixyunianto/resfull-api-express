@@ -5,7 +5,7 @@ module.exports = {
   categoryAll: () => {
     return new Promise((resolve, reject) => {
       const queryString = ["SELECT * FROM categories", "SELECT * FROM products INNER JOIN categories ON products.category_id = categories.id"];
-      
+
       db.query(queryString.join(';'),  (err, data) => {
         if (!err) {;
           resolve(data);
@@ -18,10 +18,10 @@ module.exports = {
 
   getCategoryById: (params) => {
     return new Promise((resolve, reject) => {
-      const queryString = "SELECT * FROM categories WHERE id = "+ params;
-      db.query(queryString, (err, data) => {
+      const queryString = ["SELECT * FROM categories WHERE id ="+params, "SELECT * FROM products INNER JOIN categories ON products.category_id = categories.id WHERE category_id="+params];
+      db.query(queryString.join(';'), (err, data) => {
         if (!err) {
-          resolve(data[0] + data[1]);
+          resolve(data);
         } else {
           reject(err);
         }

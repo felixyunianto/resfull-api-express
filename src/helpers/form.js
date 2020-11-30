@@ -11,7 +11,6 @@ module.exports = {
         const resObject = {
             message: 'Data Error',
             status: 500,
-            // error: err
         };
         res.status(500).json(resObject);
     },
@@ -36,7 +35,7 @@ module.exports = {
             return map;
         }, {})
 
-        let products = productArray.reduce((map, row) => {
+        productArray.reduce((map, row) => {
             let key = row['category_name'];
             map[key]
             if(map[key]){
@@ -45,14 +44,15 @@ module.exports = {
             }
 
             return map;
+
         }, categories);
 
-        // let result = Object.values(categories);
+        let result = Object.values(categories);
         
         const resObject = {
             message: 'Data Success',
             status: 200,
-            data: products
+            data: result
         };
         res.json(resObject)
     }
