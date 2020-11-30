@@ -16,7 +16,7 @@ module.exports = {
 
   getCategoryById: (reqBody, res) => {
     const { id } = reqBody.params;
-    
+
     categoriesModel
       .getCategoryById(id, res)
       .then((data) => {
@@ -26,7 +26,6 @@ module.exports = {
             status: 404,
           });
         } else {
-          // form.success(res, data[0]);
           form.nested(res, data);
         }
       })
