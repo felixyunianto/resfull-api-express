@@ -1,11 +1,13 @@
 const db = require("../config/mySQL");
 
+
 module.exports = {
   categoryAll: () => {
     return new Promise((resolve, reject) => {
-      const queryString = "SELECT * FROM categories";
-      db.query(queryString, (err, data) => {
-        if (!err) {
+      const queryString = ["SELECT * FROM categories", "SELECT * FROM products INNER JOIN categories ON products.category_id = categories.id"];
+      
+      db.query(queryString.join(';'),  (err, data) => {
+        if (!err) {;
           resolve(data);
         } else {
           reject(err);
@@ -19,7 +21,7 @@ module.exports = {
       const queryString = "SELECT * FROM categories WHERE id = "+ params;
       db.query(queryString, (err, data) => {
         if (!err) {
-          resolve(data);
+          resolve(data[0] + data[1]);
         } else {
           reject(err);
         }

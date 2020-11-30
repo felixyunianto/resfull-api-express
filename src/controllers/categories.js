@@ -6,7 +6,8 @@ module.exports = {
     categoriesModel
       .categoryAll()
       .then((data) => {
-        form.success(res, data);
+        // console.log(data);
+        form.nested(res, data);
       })
       .catch((err) => {
         form.error(res, err);
