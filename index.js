@@ -1,6 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
 const mainRouter = require("./src/routes/index");
+const cors = require("cors");
 const app = express();
 const port = 8005;
 // listen port
@@ -10,6 +11,9 @@ app.listen(port, () => {
 
 // menambahkan logger
 app.use(logger("dev"));
+
+// menambahkan cors
+app.use(cors());
 
 // menambahkan parser untuk x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
